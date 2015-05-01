@@ -1,0 +1,14 @@
+<application version="5" xmlns="http://java.sun.com/xml/ns/javaee"  
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+   xsi:schemaLocation="http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/application_7.xsd">
+   
+   <module>  
+      <ejb>duke-ejb-1.0-SNAPSHOT.jar</ejb>  
+   </module>  
+   <module>  
+      <web>  
+         <web-uri>duke-web-1.0-SNAPSHOT.war</web-uri>
+         <context-root>duke</context-root>  
+      </web>  
+   </module>  
+</application>
