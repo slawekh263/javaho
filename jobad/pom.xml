@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    
+	<groupId>org.j45</groupId>
+    <artifactId>jobad-enterprise</artifactId>
+	<version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>jobad Enterprise</name>
+    
+    <modules>
+        <module>jobad-ejb</module>
+		<module>jobad-web</module>
+		<module>jobad-app</module>
+    </modules>
+
+    <properties>
+
+        <!-- maven default properties -->
+        <encoding>UTF-8</encoding>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <ejb.ejbVersion>3.1</ejb.ejbVersion>
+        <ejb.generateClient>true</ejb.generateClient>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <maven.ear.duplicateArtifactsBreakTheBuild>true</maven.ear.duplicateArtifactsBreakTheBuild>
+        <skipITs>true</skipITs>
+        
+        <!-- dependency versions -->
+        <javaee.version>7.0</javaee.version>
+        <junit.version>4.11</junit.version>
+        <mockito.version>1.9.5</mockito.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <dbunit.version>2.5.0</dbunit.version>
+
+    </properties>
+    
+    <dependencyManagement>
+        <dependencies>
+		
+            <dependency>
+                <groupId>org.j45</groupId>
+                <artifactId>jobad-ejb</artifactId>
+                <version>1.0-SNAPSHOT</version>
+				<type>ejb</type>
+            </dependency>
+			
+            <dependency>
+                <groupId>org.j45</groupId>
+                <artifactId>jobad-web</artifactId>
+				<version>1.0-SNAPSHOT</version>
+            </dependency>		
+		
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>test</scope>
+            </dependency>
+        
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <version>${dbunit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+		
+    </dependencyManagement>
+    
+</project>
