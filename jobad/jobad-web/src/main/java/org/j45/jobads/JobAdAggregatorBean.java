@@ -1,5 +1,6 @@
 package org.j45.jobads;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -7,10 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 
+@Named
 @ManagedBean
-public class JobAdAggregatorBean {
+@ConversationScoped
+public class JobAdAggregatorBean implements Serializable {
+	
+	private static final long serialVersionUID = 33425351L;
 	
 	private Map<String, List<JobAdBean>> jobads = new HashMap<String, List<JobAdBean>>();
 	{
@@ -31,7 +38,21 @@ public class JobAdAggregatorBean {
 		return this.jobads;
 	}
 	
+	public String getHeading() {
+		return "Job Ad Aggregator";
+	}
+	
+	public String [] getRings() {
+		String [] arr = new String[3];
+		arr[0] = "1";
+		arr[1] = "2";
+		arr[2] = "3";
+		return arr;
+		// return new String[]{"adin", "dwa", "tri"};
+	}
+	
 	public List<String> getAdSources() {
+		System.out.println(Thread.currentThread().getStackTrace());
 		List<String> adSourcesList = new LinkedList<String>();
 		Set<String> adSources = jobads.keySet();
 		Iterator<String> it = adSources.iterator();
