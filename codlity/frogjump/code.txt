@@ -1,0 +1,26 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can use System.out.println for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    
+    public int solution(int X, int Y, int D) {
+        int steps = 0;
+        int modulo = -1;
+        
+        if(X >=0 && Y>=0 && D>=0) {
+            if(Y >= X) {
+                steps = (int) (Y-X)/D;
+                modulo = (Y-X) % D;
+                if(modulo != 0) {
+                    steps++;
+                }
+            }
+        }
+        System.out.println("steps required: " + steps);
+        return steps;
+    }
+    
+}

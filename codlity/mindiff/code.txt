@@ -1,0 +1,42 @@
+import java.util.Map;
+import java.util.HashMap;
+
+class Solution {
+    public int solution(int[] A) {
+        Map<Integer, Integer> sumsLeft = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> sumsRight = new HashMap<Integer, Integer>();
+        int minDiff = 2001;
+        int diff;
+        int sumLeft;
+        int sumRight;
+        int sum = 0;
+        int i = -1;
+        int minP = -1;
+    
+        for(i=0; i<A.length; i++) {
+            sum += A[i];
+            sumsLeft.put(i, sum);
+            // System.out.println("sumsLeft, i: " + i + ", sum: " + sum);
+        }
+        sum = 0;
+        for(i=A.length-1; i>=0; i--) {
+            sum += A[i];
+            sumsRight.put(i, sum);
+            // System.out.println("sumsRight, i: " + i + ", sum: " + sum);
+        }
+        
+        for(i=1; i<A.length; i++) {
+            sumLeft = sumsLeft.get(i-1);
+            sumRight = sumsRight.get(i);
+            diff = Math.abs(sumLeft - sumRight);
+            // System.out.println("i: " + i + ", diff: " + diff);
+            if(diff < minDiff) {
+                minDiff = diff;
+                minP = i;
+            }
+        }
+        // System.out.println("minDiff is: " + minDiff + " for p: " + minP);
+        return minDiff;
+
+    }
+}

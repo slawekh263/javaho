@@ -1,0 +1,27 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can use System.out.println for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        int valuesSum = 0;
+        int maxValuesSum = 0;
+        int missingNumber = -1;
+        
+        for(int i=0; i<A.length; i++) {
+            valuesSum += A[i];
+            maxValuesSum += (i+1);
+        }
+        maxValuesSum += (A.length+1);
+        
+        missingNumber = maxValuesSum - valuesSum;
+        /*
+        System.out.println("missing element: " + missingNumber);
+        System.out.println("max values: " + maxValuesSum);
+        System.out.println("values: " + valuesSum);
+        */
+        return missingNumber;
+    }
+}
