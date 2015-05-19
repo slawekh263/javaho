@@ -1,0 +1,23 @@
+class Solution {
+    public int solution(int[] A) {
+        short isPerm = 1;
+        int size = A.length;
+        int i;
+        short [] presence = new short[size];
+        
+        for(i=0; i<size; i++) {
+            if(A[i] > size) {
+                return 0;
+            }
+            presence[A[i]-1] = 1;
+        }
+        
+        for(i=0; i<size; i++) {
+            if(presence[i] == 0) {
+                isPerm = 0;
+            }
+        }
+        
+        return isPerm;
+    }
+}
