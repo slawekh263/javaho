@@ -1,0 +1,68 @@
+
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can use System.out.println for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+import java.util.Arrays;
+
+class Solution {
+    public int solution(int[] A) {
+        int l = A.length;
+        int i, j, k;
+        int max = -1000000001;
+        int maxCand = -1000000001;
+        
+        // Solution.bubblesort(A);
+        Arrays.sort(A);
+
+        i = j = k = 0;
+        while(i<l) {
+            j=i;
+            while(j<l) {
+                k=j;
+                while(k<l) {
+                    if(i != j && i !=k && j != k) {
+                        maxCand = A[i] * A[j] * A[k];
+                        if(maxCand > max) {
+                            max = maxCand;
+                        }
+                    }
+                    if(k==2 && k<l-3) {
+                        k = l-3;
+                    } else {
+                        k++;
+                    }
+                }
+                if(j==2 && j<l-3) {
+                    j = l-3;
+                } else {
+                    j++;
+                }
+            }
+            
+            if(i==2 && i<l-3) {
+                i = l-3;
+            } else {
+                i++;
+            }
+        }    
+
+        return max;
+    }
+        
+	public static int [] bubblesort(int [] array) {
+		int holder;
+		for(int i = array.length-1; i>0; i--) {
+			for(int j=0; j<i; j++) {
+				if(array[j] > array[j+1]) {
+					holder = array[j];
+					array[j] = array[j+1];
+					array[j+1] = holder;
+				}
+			}
+		}
+		return array;
+	}        
+
+}

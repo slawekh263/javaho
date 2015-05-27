@@ -1,0 +1,21 @@
+
+class Solution {
+    public int solution(int[] A) {
+        long cntr = (long) 0;
+        int zeroCntr = 0;
+            
+        for(int i=0; i<A.length; i++) {
+            if(A[i] == 0) {
+                zeroCntr++;
+            } else {
+                cntr += zeroCntr;
+            }
+        }
+        
+        if(cntr > 1000000000) {
+            cntr = -1;
+        }
+
+        return (int) cntr;
+    }
+}
