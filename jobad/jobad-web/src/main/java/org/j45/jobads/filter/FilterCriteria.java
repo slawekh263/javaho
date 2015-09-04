@@ -12,6 +12,5 @@ public class FilterCriteria {
 		this.searchString = searchString;
 	}
 	
-	
 
 }

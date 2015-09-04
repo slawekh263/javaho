@@ -1,6 +1,6 @@
 package org.j45.jobads.advertiser;
 
-import org.j45.jobads.AdvertiserType;
+import org.j45.jobad.web.AdvertiserType;
 
 public class AdvertiserManagerBean {
 	
@@ -9,11 +9,10 @@ public class AdvertiserManagerBean {
 	}
 	
 	public void removeAdvertiser(long advertiserId) {
-		
 	}
-
 }
 
-
+/*
 http://pracait.com/
 	?s=java&location=&ptype=job_listing&latitude=&longitude=&full_address=&north_east_lng=&south_west_lng=&north_east_lat=&south_west_lat=&radius=0
+*/

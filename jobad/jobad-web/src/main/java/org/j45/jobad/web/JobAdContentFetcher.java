@@ -1,7 +1,7 @@
-package org.j45.jobads;
+package org.j45.jobad.web;
 
 public class JobAdContentFetcher {
 	
-	public 
+
 
 }

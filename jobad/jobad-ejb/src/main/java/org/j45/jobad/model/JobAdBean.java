@@ -1,4 +1,4 @@
-package org.j45.jobads;
+package org.j45.jobad.model;
 
 public class JobAdBean {
 	

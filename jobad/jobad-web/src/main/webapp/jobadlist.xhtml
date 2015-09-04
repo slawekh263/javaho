@@ -24,13 +24,13 @@
 
 			<table cellspacing="0" cellpadding="0" >
 			
-				<c:forEach items="#{jobAdAggregatorBean.adSources}" var="adsrc1">
+				<c:forEach items="#{jobAdManagedBean.adSources}" var="adsrc1">
 					<tr>
 						<td>Source forEach: #{adsrc1}</td>
 					</tr>				
 				</c:forEach>
 			
-				<ui:repeat value="#{jobAdAggregatorBean.adSources}" var="adsrc" >
+				<ui:repeat value="#{jobAdManagedBean.adSources}" var="adsrc" >
 					<tr>
 						<td>Source: #{adsrc}</td>
 					</tr>

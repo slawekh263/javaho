@@ -1,4 +1,4 @@
-package org.j45.jobads;
+package org.j45.jobad.web;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -8,18 +8,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
+import org.j45.jobad.JobAdAggregatorBean;
+import org.j45.jobad.JobAdAggregatorRemote;
+import org.j45.jobad.model.JobAdBean;
+
 @Named
 @ManagedBean
 @ConversationScoped
-public class JobAdAggregatorBean implements Serializable {
+public class JobAdManagedBean implements Serializable {
 	
 	private static final long serialVersionUID = 33425351L;
 	
+	@EJB
+	private JobAdAggregatorRemote jobsAggregator;
+	
 	private Map<String, List<JobAdBean>> jobads = new HashMap<String, List<JobAdBean>>();
+	/*
 	{
 		JobAdBean ja1 = new JobAdBean("Java Developer", "Zatrudnie developera Java");
 		JobAdBean ja2 = new JobAdBean("Senior Java Developer", "Zatrudnie senior developera Java");
@@ -33,9 +42,10 @@ public class JobAdAggregatorBean implements Serializable {
 		jobads.put("pracuj.pl", l1);
 		jobads.put("IT w Krakowie", l2);
 	}
+	*/
 
 	public Map<String, List<JobAdBean>> getJobAds() {
-		return this.jobads;
+		return this.jobsAggregator.getJobAds();
 	}
 	
 	public String getHeading() {
@@ -52,6 +62,18 @@ public class JobAdAggregatorBean implements Serializable {
 	}
 	
 	public List<String> getAdSources() {
+		List<String> adSourcesList = new LinkedList<String>();
+		Map<String, List<JobAdBean>> jobads = this.getJobAds();
+		Set<String> adSourcesSet = jobads.keySet();
+		Iterator<String> it = adSourcesSet.iterator();
+		while(it.hasNext()) {
+			adSourcesList.add(it.next());
+		}
+		return adSourcesList;		
+	}
+	
+	/*
+	public List<String> getAdSources() {
 		System.out.println(Thread.currentThread().getStackTrace());
 		List<String> adSourcesList = new LinkedList<String>();
 		Set<String> adSources = jobads.keySet();
@@ -61,5 +83,6 @@ public class JobAdAggregatorBean implements Serializable {
 		}
 		return adSourcesList;
 	}
+	*/
 
 }
