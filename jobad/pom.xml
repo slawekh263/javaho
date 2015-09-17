@@ -37,6 +37,8 @@
         <mockito.version>1.9.5</mockito.version>
         <slf4j.version>1.7.7</slf4j.version>
         <dbunit.version>2.5.0</dbunit.version>
+		<httpasyncclient.version>4.1</httpasyncclient.version>
+		<jsoup.version>1.8.3</jsoup.version>
 
     </properties>
     
@@ -90,6 +92,19 @@
                 <version>${slf4j.version}</version>
                 <scope>test</scope>
             </dependency>
+			
+			<dependency>
+			  <groupId>org.apache.httpcomponents</groupId>
+			  <artifactId>httpasyncclient</artifactId>
+			  <version>${httpasyncclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${jsoup.version}</version>
+			</dependency>			
             
             <dependency>
                 <groupId>org.dbunit</groupId>

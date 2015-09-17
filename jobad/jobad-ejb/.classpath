@@ -49,5 +49,9 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/slhu/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpasyncclient/4.1/httpasyncclient-4.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.4.1/httpclient-4.4.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore-nio/4.4.1/httpcore-nio-4.4.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

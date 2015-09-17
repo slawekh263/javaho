@@ -1,4 +1,4 @@
-package org.j45.jobad.web;
+package org.j45.jobad.model;
 
 public enum OffererType {
 	AGENCY,
