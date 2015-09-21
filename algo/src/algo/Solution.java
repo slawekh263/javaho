@@ -18,7 +18,7 @@ public class Solution {
         boolean noDividerSubsetFound;
         
         Integer [] testArray = { 4, 2, 1, 7, 3, 4, 2 };
-        Integer [] smallTestArray = { 2, 1, 4, 2 };
+        Integer [] smallTestArray = { 2, 1, 4, 2, 5, 1000, 7 };
         /*
          * 4, 4 2, 4, 1 
          */
@@ -68,6 +68,9 @@ public class Solution {
     	
     	int i;
     	List<List<Integer>> lists = new LinkedList<List<Integer>>();
+    	List<List<Integer>> singleValLists = new LinkedList<List<Integer>>();
+    	List<List<Integer>> currentLists = new LinkedList<List<Integer>>();
+    	List<List<Integer>> outputLists = new LinkedList<List<Integer>>();
     	Integer [] uniqueArray;
 
     	// creating set to remove duplicates (not significant when finding dividers)
@@ -86,19 +89,19 @@ public class Solution {
     	// list.add(new Integer[] { 4, 6 });
     	
     	for(i=0; i<uniqueArray.length; i++) {
-    		lists = addToLists(lists, uniqueArray[i]);
+    		currentLists = cloneLists(outputLists);
+    		singleValLists = getValueLists(currentLists, uniqueArray[i]);
+    		System.out.println("List size after add: " + lists.size());
+    		concatLists(singleValLists, outputLists);
+    		printLists(outputLists);
     	}
 
-    	return lists;
+    	return outputLists;
     }
     
-    public static List<List<Integer>> addToLists(List<List<Integer>> lists, Integer value) {
-    	
-    	List<List<Integer>> outputLists = new ArrayList<List<Integer>>();
-    	// clone existing lists
-    	List<Integer> cloneList;
-    	
-    	System.out.println("Adding to list: " + value);
+    public static List<List<Integer>> getValueLists(List<List<Integer>> lists, Integer value) {
+
+    	System.out.println("-- Adding to list: " + value);
     	Iterator<List<Integer>> it = lists.iterator();
     	List<Integer> list = null;
     	// add to existing lists
@@ -110,30 +113,42 @@ public class Solution {
     	List<Integer> singleList = new ArrayList<Integer>();
     	singleList.add(value);
     	lists.add(singleList);
-    	
-    	backupLists(lists, outputLists);
-    	
-    	printLists(lists);
-    	
-    	return outputLists;
+    	    	
+    	return lists;
     }
     
-    public static void backupLists(List<List<Integer>> inputLists, List<List<Integer>> outputLists) {
-    	
-    	Iterator<List<Integer>> it = inputLists.iterator();
+    public static List<List<Integer>> cloneLists(List<List<Integer>> source) {
+    	List<List<Integer>> target = new ArrayList<List<Integer>>();
+    	Iterator<Integer> existingList = null;
+    	List<Integer> cloneList = null;
+    	Iterator<List<Integer>> it = source.iterator();
     	while(it.hasNext()) {
-
+    		existingList = it.next().iterator();
+    		cloneList = new ArrayList<Integer>();
+    		while(existingList.hasNext()) {
+    			cloneList.add((int) existingList.next());
+    		}
+    		if(!cloneList.isEmpty()) {
+    			target.add(cloneList);
+    		}    		
     	}
-    	
-		List<Integer> cloneList = new ArrayList<Integer>();
-		Iterator<Integer> lit = list.iterator();
-		while(lit.hasNext()) {
-			cloneList.add((int) lit.next());
-		}
-		if(!cloneList.isEmpty()) {
-			lists.add(cloneList);
-		}    	
-    	
+    	return target;
+    }
+    
+    public static void concatLists(List<List<Integer>> inputLists, List<List<Integer>> targetLists) {
+    	Iterator<List<Integer>> it = inputLists.iterator();
+    	Iterator<Integer> existingList = null;
+    	List<Integer> cloneList = null;
+    	while(it.hasNext()) {
+    		existingList = it.next().iterator();
+    		cloneList = new ArrayList<Integer>();
+    		while(existingList.hasNext()) {
+    			cloneList.add((int) existingList.next());
+    		}
+    		if(!cloneList.isEmpty()) {
+    			targetLists.add(cloneList);
+    		}    		
+    	}
     }
     
     public static void printList(List<Integer> list) {
@@ -141,6 +156,7 @@ public class Solution {
     }
     
     public static void printLists(List<List<Integer>> lists) {
+    	System.out.println("Printing lists");
     	if(lists != null) {
     		Iterator<List<Integer>> it = lists.iterator();
     		while(it.hasNext()) {
