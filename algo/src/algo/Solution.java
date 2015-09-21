@@ -19,48 +19,51 @@ public class Solution {
         
         Integer [] testArray = { 4, 2, 1, 7, 3, 4, 2 };
         Integer [] smallTestArray = { 2, 1, 4, 2, 5, 1000, 7 };
-        /*
-         * 4, 4 2, 4, 1 
-         */
         
-        List<List<Integer>> tubsets = getSubsets(smallTestArray);
+        List<List<Integer>> subsetsList = getSubsets(smallTestArray);
+        /*
         List<Integer> ar;
-        Iterator<List<Integer>> it = tubsets.iterator();
+        Iterator<List<Integer>> it = subsets.iterator();
         while(it.hasNext()) {
         	ar = it.next();
         	System.out.println("Subset: " + Arrays.toString(ar.toArray()));
         }
+        */
+
+        // Scanner sc = new Scanner(System.in);
+        // int tests = sc.nextInt();
+        int tests = 1;
         
-        if(true) {
-        	return;
-        }
-        
-        Scanner sc = new Scanner(System.in);
-        int tests = sc.nextInt();
         for(i=0; i<tests; i++) {
         	// read input data
-            aLen = sc.nextInt();
-            aArr = new int[aLen];
+            // aLen = sc.nextInt();
+            // aArr = new int[aLen];
             // System.out.println("aLen: " + aLen);
-            for(j=0; j<aLen; j++) {
-            	aArr[j] = sc.nextInt();
+            // for(j=0; j<aLen; j++) {
+            	// aArr[j] = sc.nextInt();
             	// System.out.println("ai: " + aArr[j]);
-            }
+            // }
+            // Integer [] arr = { 2, 1, 4, 2, 5, 1000, 7 }; 
+        	Integer [] arr = { 2, 4 };
             // create subsets
             // subsets = getSubsets(aArr);
             
             // divider
             noDividerSubsetFound = false;
-            for(j=0; j<subsets.length; j++) {
-            	if(hasNoDivider(subsets[j])) {
-            		noDividerSubsetFound = true;
-            		break;
+            
+            Iterator<List<Integer>> sit = subsetsList.iterator();
+            List<Integer> subset = null;
+            Integer allDivider;
+            
+            while(sit.hasNext()) {
+            	subset = sit.next();
+            	allDivider = getDivider(subset);
+            	if(allDivider != null) {
+            		System.out.println("NO");
+            		return;
             	}
             }
-            if(noDividerSubsetFound) {
-            	System.out.println(noDividerSubsetFound ? "YES" : "NO");
-            }
-            
+            System.out.println("YES");            
         }
     }
     
@@ -165,21 +168,30 @@ public class Solution {
     	}
     }
     
-    public static boolean hasNoDivider(int [] set) {
+    public static Integer getDivider(List<Integer> set) {
     	int i, j;
-    	Arrays.sort(set);
-    	int x = set[set.length-1];
+    	boolean allDivide;
+    	Integer divider = null;
+    	Integer [] setEls = new Integer[set.size()];
+    	setEls = set.toArray(setEls);
+    	Arrays.sort(setEls);
+    	int x = setEls[setEls.length-1];
     	if(x > 1) {
     		for(i=2; i<=x; i++) {
-    			for(j=0; j<set.length; j++) {
-    				if(set[j] % i != 0) {
-    					// at least one element divides
-    					return true;
+    			allDivide = true;
+    			for(j=0; j<setEls.length; j++) {
+    				if(setEls[j] % i != 0) {
+    					allDivide = false;
+    				} else {
+    					System.out.println("Element " + setEls[j] + " not divides by " + i);
     				}
+    			}
+    			if(allDivide) {
+    				divider = x; 
     			}
     		}
     	}
-    	return false;
+    	return divider;
     }
     
 }
