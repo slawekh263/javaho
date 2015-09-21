@@ -3,6 +3,9 @@ package algo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 public class Solution {
@@ -13,6 +16,24 @@ public class Solution {
         int i, j;
         int aLen;
         boolean noDividerSubsetFound;
+        
+        Integer [] testArray = { 4, 2, 1, 7, 3, 4, 2 };
+        Integer [] smallTestArray = { 2, 1, 4, 2 };
+        /*
+         * 4, 4 2, 4, 1 
+         */
+        
+        List<List<Integer>> tubsets = getSubsets(smallTestArray);
+        List<Integer> ar;
+        Iterator<List<Integer>> it = tubsets.iterator();
+        while(it.hasNext()) {
+        	ar = it.next();
+        	System.out.println("Subset: " + Arrays.toString(ar.toArray()));
+        }
+        
+        if(true) {
+        	return;
+        }
         
         Scanner sc = new Scanner(System.in);
         int tests = sc.nextInt();
@@ -26,7 +47,7 @@ public class Solution {
             	// System.out.println("ai: " + aArr[j]);
             }
             // create subsets
-            subsets = getSubsets(aArr);
+            // subsets = getSubsets(aArr);
             
             // divider
             noDividerSubsetFound = false;
@@ -43,13 +64,89 @@ public class Solution {
         }
     }
     
-    public static int[][] getSubsets(int [] array) {
-    	ArrayList<ArrayList<Integer>> subsets = new ArrayList<ArrayList<Integer>>();
-    	Set<Integer> s = new HashSet<Integer>();
+    public static List<List<Integer>> getSubsets(Integer [] array) {
     	
-    	// get all subsets
+    	int i;
+    	List<List<Integer>> lists = new LinkedList<List<Integer>>();
+    	Integer [] uniqueArray;
+
+    	// creating set to remove duplicates (not significant when finding dividers)
+    	Set<Integer> set = new HashSet<Integer>(Arrays.asList(array));
+    	List<Integer> uniqueList = new ArrayList<Integer>();
+    	Iterator<Integer> it =  set.iterator();
+    	while(it.hasNext()) {
+    		uniqueList.add(it.next());
+    	}
+    	uniqueArray = new Integer[uniqueList.size()];
+    	uniqueArray = uniqueList.toArray(uniqueArray);
     	
-    	return null;
+    	System.out.println("Unique array: " + Arrays.toString(uniqueArray));
+    	
+    	// list.add(new Integer[] { 2, 3 });
+    	// list.add(new Integer[] { 4, 6 });
+    	
+    	for(i=0; i<uniqueArray.length; i++) {
+    		lists = addToLists(lists, uniqueArray[i]);
+    	}
+
+    	return lists;
+    }
+    
+    public static List<List<Integer>> addToLists(List<List<Integer>> lists, Integer value) {
+    	
+    	List<List<Integer>> outputLists = new ArrayList<List<Integer>>();
+    	// clone existing lists
+    	List<Integer> cloneList;
+    	
+    	System.out.println("Adding to list: " + value);
+    	Iterator<List<Integer>> it = lists.iterator();
+    	List<Integer> list = null;
+    	// add to existing lists
+    	while(it.hasNext()) {
+    		list = it.next();
+    		list.add(value);
+    	}
+    	// create single-element list
+    	List<Integer> singleList = new ArrayList<Integer>();
+    	singleList.add(value);
+    	lists.add(singleList);
+    	
+    	backupLists(lists, outputLists);
+    	
+    	printLists(lists);
+    	
+    	return outputLists;
+    }
+    
+    public static void backupLists(List<List<Integer>> inputLists, List<List<Integer>> outputLists) {
+    	
+    	Iterator<List<Integer>> it = inputLists.iterator();
+    	while(it.hasNext()) {
+
+    	}
+    	
+		List<Integer> cloneList = new ArrayList<Integer>();
+		Iterator<Integer> lit = list.iterator();
+		while(lit.hasNext()) {
+			cloneList.add((int) lit.next());
+		}
+		if(!cloneList.isEmpty()) {
+			lists.add(cloneList);
+		}    	
+    	
+    }
+    
+    public static void printList(List<Integer> list) {
+    	System.out.println("List: " + Arrays.toString(list.toArray()));
+    }
+    
+    public static void printLists(List<List<Integer>> lists) {
+    	if(lists != null) {
+    		Iterator<List<Integer>> it = lists.iterator();
+    		while(it.hasNext()) {
+    			printList(it.next());
+    		}    		
+    	}
     }
     
     public static boolean hasNoDivider(int [] set) {
