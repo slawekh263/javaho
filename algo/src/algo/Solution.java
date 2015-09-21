@@ -9,63 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 public class Solution {
-    public static void main(String args[] ) throws Exception {
-        
-        int [] aArr;
-        int [][]subsets;
-        int i, j;
-        int aLen;
-        boolean noDividerSubsetFound;
-        
-        Integer [] testArray = { 4, 2, 1, 7, 3, 4, 2 };
-        Integer [] smallTestArray = { 2, 1, 4, 2, 5, 1000, 7 };
-        
-        List<List<Integer>> subsetsList = getSubsets(smallTestArray);
-        /*
-        List<Integer> ar;
-        Iterator<List<Integer>> it = subsets.iterator();
-        while(it.hasNext()) {
-        	ar = it.next();
-        	System.out.println("Subset: " + Arrays.toString(ar.toArray()));
-        }
-        */
-
-        // Scanner sc = new Scanner(System.in);
-        // int tests = sc.nextInt();
-        int tests = 1;
-        
-        for(i=0; i<tests; i++) {
-        	// read input data
-            // aLen = sc.nextInt();
-            // aArr = new int[aLen];
-            // System.out.println("aLen: " + aLen);
-            // for(j=0; j<aLen; j++) {
-            	// aArr[j] = sc.nextInt();
-            	// System.out.println("ai: " + aArr[j]);
-            // }
-            // Integer [] arr = { 2, 1, 4, 2, 5, 1000, 7 }; 
-        	Integer [] arr = { 2, 4 };
-            // create subsets
-            // subsets = getSubsets(aArr);
-            
-            // divider
-            noDividerSubsetFound = false;
-            
-            Iterator<List<Integer>> sit = subsetsList.iterator();
-            List<Integer> subset = null;
-            Integer allDivider;
-            
-            while(sit.hasNext()) {
-            	subset = sit.next();
-            	allDivider = getDivider(subset);
-            	if(allDivider != null) {
-            		System.out.println("NO");
-            		return;
-            	}
-            }
-            System.out.println("YES");            
-        }
-    }
     
     public static List<List<Integer>> getSubsets(Integer [] array) {
     	
@@ -86,7 +29,7 @@ public class Solution {
     	uniqueArray = new Integer[uniqueList.size()];
     	uniqueArray = uniqueList.toArray(uniqueArray);
     	
-    	System.out.println("Unique array: " + Arrays.toString(uniqueArray));
+    	// System.out.println("Unique array: " + Arrays.toString(uniqueArray));
     	
     	// list.add(new Integer[] { 2, 3 });
     	// list.add(new Integer[] { 4, 6 });
@@ -94,9 +37,9 @@ public class Solution {
     	for(i=0; i<uniqueArray.length; i++) {
     		currentLists = cloneLists(outputLists);
     		singleValLists = getValueLists(currentLists, uniqueArray[i]);
-    		System.out.println("List size after add: " + lists.size());
+    		// System.out.println("List size after add: " + lists.size());
     		concatLists(singleValLists, outputLists);
-    		printLists(outputLists);
+    		// printLists(outputLists);
     	}
 
     	return outputLists;
@@ -104,7 +47,7 @@ public class Solution {
     
     public static List<List<Integer>> getValueLists(List<List<Integer>> lists, Integer value) {
 
-    	System.out.println("-- Adding to list: " + value);
+    	// System.out.println("-- Adding to list: " + value);
     	Iterator<List<Integer>> it = lists.iterator();
     	List<Integer> list = null;
     	// add to existing lists
@@ -174,16 +117,19 @@ public class Solution {
     	Integer divider = null;
     	Integer [] setEls = new Integer[set.size()];
     	setEls = set.toArray(setEls);
+    	
     	Arrays.sort(setEls);
     	int x = setEls[setEls.length-1];
     	if(x > 1) {
     		for(i=2; i<=x; i++) {
     			allDivide = true;
     			for(j=0; j<setEls.length; j++) {
+    				// System.out.println("el: " + setEls[j] + ", i: " + i);
     				if(setEls[j] % i != 0) {
     					allDivide = false;
+    					break;
     				} else {
-    					System.out.println("Element " + setEls[j] + " not divides by " + i);
+    					// System.out.println("Element " + setEls[j] + " not divides by " + i);
     				}
     			}
     			if(allDivide) {
@@ -191,7 +137,70 @@ public class Solution {
     			}
     		}
     	}
+    	// System.out.println("Divider for " + Arrays.toString(setEls) + " is " + (divider != null ? divider : "not found"));
     	return divider;
     }
+    
+    public static void main(String args[] ) throws Exception {
+        
+        int [] aArr;
+        int [][]subsets;
+        int i, j;
+        int aLen;
+        boolean noDividerSubsetFound;
+        
+        Integer [] testArray = { 4, 2, 1, 7, 3, 4, 2 };
+        Integer [] smallTestArray = { 1, 2, 3 };
+        
+        List<List<Integer>> subsetsList = getSubsets(smallTestArray);
+        printLists(subsetsList);
+        System.out.println("---------");
+
+        /*
+        List<Integer> ar;
+        Iterator<List<Integer>> it = subsets.iterator();
+        while(it.hasNext()) {
+        	ar = it.next();
+        	System.out.println("Subset: " + Arrays.toString(ar.toArray()));
+        }
+        */
+
+        // Scanner sc = new Scanner(System.in);
+        // int tests = sc.nextInt();
+        int tests = 1;
+        
+        for(i=0; i<tests; i++) {
+        	// read input data
+            // aLen = sc.nextInt();
+            // aArr = new int[aLen];
+            // System.out.println("aLen: " + aLen);
+            // for(j=0; j<aLen; j++) {
+            	// aArr[j] = sc.nextInt();
+            	// System.out.println("ai: " + aArr[j]);
+            // }
+            // Integer [] arr = { 2, 1, 4, 2, 5, 1000, 7 }; 
+        	// Integer [] arr = { 1, 2, 3 };
+            // create subsets
+            // subsets = getSubsets(aArr);
+            
+            // divider            
+            Iterator<List<Integer>> sit = subsetsList.iterator();
+            List<List<Integer>> nonDivSubsets = new ArrayList<List<Integer>>();
+            List<Integer> subset = null;
+            Integer allDivider;
+            
+            while(sit.hasNext()) {
+            	subset = sit.next();
+            	allDivider = getDivider(subset);
+            	if(allDivider == null) {
+            		// subset with no divider exist (can return here)
+            		nonDivSubsets.add(subset); // enough, can break here
+            		printList(subset);
+            	}
+            }
+            System.out.println(nonDivSubsets.isEmpty() ? "NO" : "YES");
+                        
+        }
+    }    
     
 }
