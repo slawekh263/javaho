@@ -4,6 +4,6 @@ public interface ContentRequestor {
 	
 	public void onContentReceived(String advertiser, String content);
 	
-	public void onContentParsed();
+	// public void onContentParsed();
 
 }

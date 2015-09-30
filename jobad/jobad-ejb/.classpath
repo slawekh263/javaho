@@ -51,7 +51,7 @@
 	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpasyncclient/4.1/httpasyncclient-4.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.4.1/httpclient-4.4.1.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar" sourcepath="C:/Users/slawe_000/.m2/repository/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore-nio/4.4.1/httpcore-nio-4.4.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

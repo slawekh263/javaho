@@ -38,6 +38,12 @@
             <plugin>
                 <artifactId>maven-ear-plugin</artifactId>
                 <configuration>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>		
                     <modules>
                         <webModule>
                             <groupId>org.j45</groupId>

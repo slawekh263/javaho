@@ -25,11 +25,12 @@ public class JobAdAggregatorBean implements JobAdAggregatorRemote, ContentReques
 	private static List<Advertiser> predefinedAdvertisers = new LinkedList<Advertiser>();
 	
 	static {
-		Advertiser a1 = new Advertiser("Pracuj.pl", "pracuj.pl");
+		Advertiser a1 = new Advertiser("Pracuj.pl", "http://pracuj.pl");
 		predefinedAdvertisers.add(a1);
 	}
 	
 	static {
+		/*
 		JobAdBean ja1 = new JobAdBean("Java Developer", "Zatrudnie developera Java");
 		JobAdBean ja2 = new JobAdBean("Senior Java Developer", "Zatrudnie senior developera Java");
 		JobAdBean ja3 = new JobAdBean("Turbo Java Developer", "Zatrudnie turbo developera Java");
@@ -41,21 +42,32 @@ public class JobAdAggregatorBean implements JobAdAggregatorRemote, ContentReques
 		
 		predefinedJobAds.put("najlepsza_praca.pl", l1);
 		predefinedJobAds.put("jestes_zasobem.pl", l2);
+		*/
 	}
 	
 	@Override
 	public Map<String, List<JobAdBean>> getJobAds() {
 		Advertiser advertiser;
+		String content;
 		// fetch advertis
 		List<Advertiser> advertisers = predefinedAdvertisers;
+		Map<String, List<JobAdBean>> ads = new HashMap<>();
+		JobAdBean ad = null;
 		
 		Iterator<Advertiser> it = advertisers.iterator();
 		while(it.hasNext()) {
 			advertiser = it.next();
-			new ContentFetcher().fetch(advertiser, this);
+			String htmlContent = ContentFetcher.fetch(advertiser);
+			System.out.println("HTML content: " + htmlContent);
+			ad = new JobAdBean();
+			ad.setContentsHtml(htmlContent);
+			List<JobAdBean> l = new LinkedList<>();
+			l.add(ad);
+			ads.put(advertiser.getName(), l);
 		}
+		System.out.println("ads size: " + ads.size());
 		
-		return null;
+		return ads;
 		
 		// return JobAdAggregatorBean.predefinedJobAds;
 	}

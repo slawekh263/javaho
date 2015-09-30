@@ -62,12 +62,22 @@ public class JobAdManagedBean implements Serializable {
 	}
 	
 	public List<String> getAdSources() {
+		String adSource = null;
 		List<String> adSourcesList = new LinkedList<String>();
 		Map<String, List<JobAdBean>> jobads = this.getJobAds();
 		Set<String> adSourcesSet = jobads.keySet();
+		System.out.println("Size of adrs: " + adSourcesSet.size());
 		Iterator<String> it = adSourcesSet.iterator();
+		Iterator<JobAdBean> itAd = null;
 		while(it.hasNext()) {
-			adSourcesList.add(it.next());
+			adSource = it.next();
+			adSourcesList.add(adSource);
+			System.out.println("Ad source: " + adSource);
+			itAd = jobads.get(adSource).iterator();
+			while(itAd.hasNext()) {
+				JobAdBean ad = itAd.next();
+				System.out.println("ad: " + ad.getContentsHtml());
+			}
 		}
 		return adSourcesList;		
 	}
