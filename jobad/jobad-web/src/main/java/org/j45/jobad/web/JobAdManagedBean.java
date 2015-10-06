@@ -13,7 +13,6 @@ import javax.enterprise.context.ConversationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-import org.j45.jobad.JobAdAggregatorBean;
 import org.j45.jobad.JobAdAggregatorRemote;
 import org.j45.jobad.model.JobAdBean;
 
@@ -62,6 +61,7 @@ public class JobAdManagedBean implements Serializable {
 	}
 	
 	public List<String> getAdSources() {
+		System.out.println("Getting ad sources");
 		String adSource = null;
 		List<String> adSourcesList = new LinkedList<String>();
 		Map<String, List<JobAdBean>> jobads = this.getJobAds();

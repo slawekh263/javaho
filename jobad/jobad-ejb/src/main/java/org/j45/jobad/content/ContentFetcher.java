@@ -36,7 +36,6 @@ public class ContentFetcher {
 				InputStream is = response.getEntity().getContent();
 				BufferedReader br = new BufferedReader(new InputStreamReader(is));
 				while ((line = br.readLine()) != null) {
-					System.out.println("line got: ");
 					sb.append(line);
 				}
 			// }

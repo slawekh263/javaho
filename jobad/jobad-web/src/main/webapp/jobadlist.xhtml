@@ -13,28 +13,34 @@
     </h:head>
 
     <h:body>
-
+		<!-- 
         <div id="heading">
             <ui:insert name="heading">
             	<h1>#{jobAdAggregatorBean.heading}</h1>
 			</ui:insert>
         </div>
+         -->
+        <div id="heading">
+        	<h1>#{jobAdManagedBean.heading}</h1>
+        </div>        
 
         <div id="ads" class="ads">
 
 			<table cellspacing="0" cellpadding="0" >
-			
+				
 				<c:forEach items="#{jobAdManagedBean.adSources}" var="adsrc1">
 					<tr>
 						<td>Source forEach: #{adsrc1}</td>
 					</tr>				
 				</c:forEach>
-			
+			 	
+			 	<!-- 
 				<ui:repeat value="#{jobAdManagedBean.adSources}" var="adsrc" >
 					<tr>
 						<td>Source: #{adsrc}</td>
 					</tr>
 				</ui:repeat>
+				 -->
 			</table>
         
         	<!--   <h:inputText value="#{helloBean.name}"></h:inputText>
