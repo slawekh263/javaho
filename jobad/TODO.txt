@@ -1,2 +1,4 @@
-1. deploy na jboss (faces problem)
-2. debug from studio (HTTP response contents empty)
+
+- debug from studio
+- JBoss deploy scripts
+- content parsing to ads
