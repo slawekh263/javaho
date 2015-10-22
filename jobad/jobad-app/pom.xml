@@ -1,62 +1,89 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    
-    <parent>
-        <groupId>org.j45</groupId>
-        <artifactId>jobad-enterprise</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    
-    <artifactId>jobad-app</artifactId>
-    <packaging>ear</packaging>
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.j45</groupId>
+		<artifactId>jobad-enterprise</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>jobad-app</artifactId>
+	<packaging>ear</packaging>
 	<!-- <version>${appl.version}</version> -->
 
-    <name>jobad Application</name>
-    
-    <dependencies>
-	
-        <dependency>
-            <groupId>org.j45</groupId>
-            <artifactId>jobad-web</artifactId>
-            <type>war</type>
-			<version>1.0-SNAPSHOT</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.j45</groupId>
-            <artifactId>jobad-ejb</artifactId>
-            <type>ejb</type>
-			<version>1.0-SNAPSHOT</version>
-        </dependency>
+	<name>jobad Application</name>
 
-    </dependencies>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-ear-plugin</artifactId>
-                <configuration>
+	<properties>
+		<!-- JBoss properties -->
+		<jboss.home>C:\jboss-eap-6.2</jboss.home>
+		<jboss.cli>${jboss.home}\bin\jboss-cli.bat</jboss.cli>
+		<deploy.scripts.dir>${project.basedir}/deploy_scripts</deploy.scripts.dir>
+		<redeploy.script>redeploy_jobad.cli</redeploy.script>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.j45</groupId>
+			<artifactId>jobad-web</artifactId>
+			<type>war</type>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.j45</groupId>
+			<artifactId>jobad-ejb</artifactId>
+			<type>ejb</type>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<configuration>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
 						</manifest>
-					</archive>		
-                    <modules>
-                        <webModule>
-                            <groupId>org.j45</groupId>
-                            <artifactId>jobad-web</artifactId>
-                        </webModule>
-                        <ejbModule>
-                            <groupId>org.j45</groupId>
-                            <artifactId>jobad-ejb</artifactId>
-                        </ejbModule>
-                    </modules>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    
+					</archive>
+					<modules>
+						<webModule>
+							<groupId>org.j45</groupId>
+							<artifactId>jobad-web</artifactId>
+						</webModule>
+						<ejbModule>
+							<groupId>org.j45</groupId>
+							<artifactId>jobad-ejb</artifactId>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>redeploy</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<executable>${jboss.cli}</executable>
+					<workingDirectory>${deploy.scripts.dir}</workingDirectory>
+					<arguments>
+						<argument>--connect</argument>
+						<argument>--file=${redeploy.script}</argument>
+					</arguments>
+				</configuration>
+			</plugin>			
+		</plugins>
+	</build>
+
 </project>

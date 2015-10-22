@@ -1,0 +1,7 @@
+
+connect
+
+undeploy jobad-app-1.0-SNAPSHOT.ear
+deploy ..\target\jobad-app-1.0-SNAPSHOT.ear
+
+exit
