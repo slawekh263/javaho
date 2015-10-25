@@ -6,6 +6,6 @@ import org.j45.jobad.model.JobAdBean;
 
 public interface ContentParser {
 	
-	public List<JobAdBean> parse(String content);
+	public List<JobAdBean> parse(String content) throws ContentParseException;
 
 }

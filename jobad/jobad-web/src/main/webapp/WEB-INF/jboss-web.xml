@@ -1,3 +1,3 @@
 <jboss-web>
-    <context-root>duke</context-root>
+    <context-root>/jobad</context-root>
 </jboss-web>

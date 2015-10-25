@@ -1,3 +1,8 @@
 body {
-	font-family: 'Roboto', sans-serif
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.875em;
+}
+
+.ja_jobads_table {
+	border: 1px solid #0a0a0a
 }

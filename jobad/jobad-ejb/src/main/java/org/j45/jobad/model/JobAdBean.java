@@ -10,6 +10,10 @@ public class JobAdBean implements Serializable {
 	public JobAdBean() {
 	}
 	
+	public JobAdBean(String position) {
+		this.position = position;
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -28,11 +32,11 @@ public class JobAdBean implements Serializable {
 	public void setContentsHtml(String contentsHtml) {
 		this.contentsHtml = contentsHtml;
 	}
-	public Offerer getOfferer() {
-		return offerer;
+	public Offerrer getOfferrer() {
+		return offerrer;
 	}
-	public void setOfferer(Offerer offerer) {
-		this.offerer = offerer;
+	public void setOfferrer(Offerrer offerrer) {
+		this.offerrer = offerrer;
 	}
 	public Date getValidTo() {
 		return validTo;
@@ -50,7 +54,7 @@ public class JobAdBean implements Serializable {
 	private String id;
 	private String position;
 	private String contentsHtml;
-	private Offerer offerer;
+	private Offerrer offerrer;
 	private Date validTo;
 	private String directUrl;
 

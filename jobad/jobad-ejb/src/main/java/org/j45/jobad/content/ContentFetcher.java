@@ -17,11 +17,11 @@ import org.j45.jobad.advertiser.Advertiser;
 
 public class ContentFetcher {
 	
-	private static CloseableHttpAsyncClient asynchronousHttpClient = HttpAsyncClients.createDefault();
+	// private static CloseableHttpAsyncClient asynchronousHttpClient = HttpAsyncClients.createDefault();
 	private static CloseableHttpClient synchronousHttpClient = HttpClients.createDefault();
 	
 	static {
-		asynchronousHttpClient.start();
+	// 	asynchronousHttpClient.start();
 	}
 	
 	public static String fetch(final Advertiser advertiser) {
@@ -38,6 +38,7 @@ public class ContentFetcher {
 				while ((line = br.readLine()) != null) {
 					sb.append(line);
 				}
+				is.close();
 			// }
 		} catch (Exception e) {
 			System.err.println("Unable to fetch content: " + e.getMessage());
@@ -47,6 +48,7 @@ public class ContentFetcher {
 	}
 	
 	// Asynchronous -> target 
+	/*
 	public static void fetch(final Advertiser advertiser, final ContentRequestor requestor) {
 	    final HttpGet request2 = new HttpGet(advertiser.getBaseUrl());
 	    asynchronousHttpClient.execute(request2, new FutureCallback<HttpResponse>() {
@@ -69,5 +71,6 @@ public class ContentFetcher {
 	    });		
 		return;
 	}
+	*/
 
 }

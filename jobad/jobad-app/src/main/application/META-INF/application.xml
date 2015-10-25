@@ -8,7 +8,7 @@
    <module>  
       <web>  
          <web-uri>jobad-web-1.0-SNAPSHOT.war</web-uri>
-         <context-root>jobad</context-root> 
+         <context-root>/jobad</context-root>
       </web>  
    </module>  
 </application>

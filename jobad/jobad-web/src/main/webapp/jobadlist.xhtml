@@ -8,43 +8,36 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/jobadlist.css" />
+        <link rel="stylesheet" type="text/css" href="css/jobadlist.css" />
+        <!-- <h:outputStylesheet name="css/jobadlist.css" /> -->
         <title>Job Ads</title>
     </h:head>
 
     <h:body>
-		<!-- 
-        <div id="heading">
-            <ui:insert name="heading">
-            	<h1>#{jobAdAggregatorBean.heading}</h1>
-			</ui:insert>
-        </div>
-         -->
+
         <div id="heading">
         	<h1>#{jobAdManagedBean.heading}</h1>
         </div>        
 
         <div id="ads" class="ads">
 
-			<table cellspacing="0" cellpadding="0" >
+			<table cellpadding="0" cellspacing="0" class="ja_jobads_table" >
 				
-				<c:forEach items="#{jobAdManagedBean.adSources}" var="adsrc1">
+				<c:forEach items="#{jobAdManagedBean.advertisements}" var="jobAdEntry">
 					<tr>
-						<td>Source forEach: #{adsrc1}</td>
+						<td>#{jobAdEntry.key}</td>
+						<td></td>
 					</tr>				
+					<c:forEach items="#{jobAdEntry.value}" var="jobAd">
+						<tr>
+							<td>#{jobAd.position}</td>
+							<td>#{jobAd.offerrer.name}</td>
+						</tr>
+					</c:forEach>			
 				</c:forEach>
-			 	
-			 	<!-- 
-				<ui:repeat value="#{jobAdManagedBean.adSources}" var="adsrc" >
-					<tr>
-						<td>Source: #{adsrc}</td>
-					</tr>
-				</ui:repeat>
-				 -->
+
 			</table>
-        
-        	<!--   <h:inputText value="#{helloBean.name}"></h:inputText>
-            <ui:insert name="content">Content</ui:insert> -->
+
         </div>
 
     </h:body>

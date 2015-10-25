@@ -1,4 +1,8 @@
 
 - debug from studio
-- JBoss deploy scripts
-- content parsing to ads
+- use Spring instead of EJB
+- lazy loading
+- asynchronous http client
+- add search
+- loggers
+- unit tests
