@@ -16,6 +16,12 @@
 	
 	<dependencies>
 
+        <dependency>
+            <groupId>org.j45</groupId>
+            <artifactId>jobad-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 		<!--  
 		<dependency>
 		  <groupId>javax.faces</groupId>

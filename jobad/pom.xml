@@ -10,8 +10,23 @@
 
 	<name>jobad Enterprise</name>
 
+	<profiles>
+		<profile>
+			<id>ejb</id>
+			<modules>
+				<module>jobad-ejb</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>ws</id>
+			<modules>
+				<module>jobad-ws</module>
+			</modules>
+		</profile>	
+	</profiles>
+	
 	<modules>
-		<module>jobad-ejb</module>
+		<module>jobad-core</module>
 		<module>jobad-web</module>
 		<module>jobad-app</module>
 	</modules>
@@ -32,6 +47,7 @@
 		<skipITs>true</skipITs>
 
 		<!-- dependency versions -->
+		<spring.version>4.2.2.RELEASE</spring.version>
 		<javaee.version>7.0</javaee.version>
 		<junit.version>4.11</junit.version>
 		<mockito.version>1.9.5</mockito.version>
@@ -44,6 +60,13 @@
 
 	<dependencyManagement>
 		<dependencies>
+		
+			<dependency>
+				<groupId>org.j45</groupId>
+				<artifactId>jobad-core</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<type>jar</type>
+			</dependency>		
 
 			<dependency>
 				<groupId>org.j45</groupId>
@@ -57,6 +80,24 @@
 				<artifactId>jobad-web</artifactId>
 				<version>1.0-SNAPSHOT</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>							
 
 			<dependency>
 				<groupId>javax</groupId>
@@ -115,5 +156,19 @@
 		</dependencies>
 
 	</dependencyManagement>
+	
+	<repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+	
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>	
 
 </project>

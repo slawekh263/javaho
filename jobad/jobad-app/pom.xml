@@ -23,44 +23,114 @@
 		<redeploy.script>redeploy_jobad.cli</redeploy.script>
 	</properties>
 	
+	<profiles>
+		<profile>
+			<id>ejb</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-ear-plugin</artifactId>
+						<configuration>
+							<defaultLibBundleDir>lib</defaultLibBundleDir>
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+								</manifest>
+							</archive>
+							<modules>
+								<webModule>
+									<groupId>org.j45</groupId>
+									<artifactId>jobad-web</artifactId>
+								</webModule>
+								<ejbModule>
+									<groupId>org.j45</groupId>
+									<artifactId>jobad-ejb</artifactId>
+								</ejbModule>
+							</modules>
+						</configuration>
+					</plugin>			
+				</plugins>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>org.j45</groupId>
+					<artifactId>jobad-ejb</artifactId>
+					<type>ejb</type>
+					<version>1.0-SNAPSHOT</version>
+				</dependency>
+			</dependencies>		
+			<!--
+			<properties>
+				<service.groupId>org.j45</service.groupId>
+				<service.artifactId>jobad-ejb</service.artifactId>
+				<service.type>ejb</service.type>
+				<service.version>1.0-SNAPSHOT</service.version>
+			</properties>
+			-->
+		</profile>
+		<profile>
+			<id>ws</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-ear-plugin</artifactId>
+						<configuration>
+							<defaultLibBundleDir>lib</defaultLibBundleDir>
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+								</manifest>
+							</archive>
+							<modules>
+								<webModule>
+									<groupId>org.j45</groupId>
+									<artifactId>jobad-web</artifactId>
+								</webModule>
+								<webModule>
+									<groupId>org.j45</groupId>
+									<artifactId>jobad-ws</artifactId>
+								</webModule>
+							</modules>
+						</configuration>
+					</plugin>			
+				</plugins>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>org.j45</groupId>
+					<artifactId>jobad-ws</artifactId>
+					<type>war</type>
+					<version>1.0-SNAPSHOT</version>
+				</dependency>
+			</dependencies>		
+			<!--
+			<properties>
+				<service.groupId>org.j45</service.groupId>
+				<service.artifactId>jobad-ejb</service.artifactId>
+				<service.type>ejb</service.type>
+				<service.version>1.0-SNAPSHOT</service.version>
+			</properties>
+			-->
+		</profile>		
+	</profiles>
+	
 	<dependencies>
+		<dependency>
+			<groupId>org.j45</groupId>
+			<artifactId>jobad-core</artifactId>
+			<type>jar</type>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>	
 		<dependency>
 			<groupId>org.j45</groupId>
 			<artifactId>jobad-web</artifactId>
 			<type>war</type>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.j45</groupId>
-			<artifactId>jobad-ejb</artifactId>
-			<type>ejb</type>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<artifactId>maven-ear-plugin</artifactId>
-				<configuration>
-					<defaultLibBundleDir>lib</defaultLibBundleDir>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-						</manifest>
-					</archive>
-					<modules>
-						<webModule>
-							<groupId>org.j45</groupId>
-							<artifactId>jobad-web</artifactId>
-						</webModule>
-						<ejbModule>
-							<groupId>org.j45</groupId>
-							<artifactId>jobad-ejb</artifactId>
-						</ejbModule>
-					</modules>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
