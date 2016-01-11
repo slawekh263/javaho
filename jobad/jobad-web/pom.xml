@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.j45</groupId>
             <artifactId>jobad-core</artifactId>
-            <scope>provided</scope>
+            <!-- <scope>provided</scope> -->
         </dependency>
 
 		<!--  
@@ -35,21 +35,21 @@
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>2.1.19</version>
-			<scope>provided</scope>
+			<!-- <scope>provided</scope> -->
 		</dependency>
 		
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.19</version>
-			<scope>provided</scope>
+			<!-- <scope>provided</scope> -->
 		</dependency>
  
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
-			<scope>provided</scope>
+			<!-- <scope>provided</scope> -->
 		</dependency>
  
 		<dependency>
@@ -71,6 +71,11 @@
 			<version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+		
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+		</dependency>
         
         <dependency>
             <groupId>junit</groupId>

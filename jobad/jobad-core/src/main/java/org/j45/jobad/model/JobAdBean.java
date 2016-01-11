@@ -3,6 +3,9 @@ package org.j45.jobad.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "JobAd")
 public class JobAdBean implements Serializable {
 	
 	private static final long serialVersionUID = 193104823L;

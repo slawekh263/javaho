@@ -1,31 +1,31 @@
 package org.j45.jobad.web;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.inject.Named;
+// import javax.inject.Named;
 
-import org.j45.jobad.JobAdAggregatorRemote;
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.j45.jobad.model.AdvertisedJobAdsMap;
 import org.j45.jobad.model.JobAdBean;
 
-@Named
-@ManagedBean
+// @Named
+@ManagedBean(eager=true)
 @RequestScoped
 public class JobAdManagedBean implements Serializable {
 	
 	private static final long serialVersionUID = 33425351L;
 	
+	/*
 	@EJB
 	private JobAdAggregatorRemote jobsAggregator;
+	*/
+	
+	// private WebClient jobadServiceClient;
 	
 	private Map<String, List<JobAdBean>> jobAdvertisements;
 	
@@ -48,14 +48,20 @@ public class JobAdManagedBean implements Serializable {
 
 	public Map<String, List<JobAdBean>> getJobAdvertisements() {
 		System.out.println("Getting job ADVERTISEMENTS");
-		return this.jobsAggregator.getJobAds();
+		// TODO use EJB client alternatively
+
+		WebClient client = WebClient.create("http://pc-j45:8080/jobad");
+		AdvertisedJobAdsMap ajam = client.path("jobadservice/alljobads").accept("application/json").get(AdvertisedJobAdsMap.class);
+		return ajam.getAds();		
+		
+		// return this.jobsAggregator.getJobAds().getAds();
 	}
 	
 	public String getHeading() {
 		System.out.println("Getting heading");
 		return "Job Ad Aggregator";
 	}
-	
+
 	@PostConstruct
 	public void prepareAdvertisements() {
 		System.out.println("Preparing list of advertisements");

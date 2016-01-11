@@ -11,6 +11,7 @@ import org.j45.jobad.content.ContentFetcher;
 import org.j45.jobad.content.ContentParseException;
 import org.j45.jobad.content.ContentParser;
 import org.j45.jobad.content.ContentParserFactory;
+import org.j45.jobad.model.AdvertisedJobAdsMap;
 import org.j45.jobad.model.JobAdBean;
 
 public class JobAdAggregator {
@@ -42,13 +43,14 @@ public class JobAdAggregator {
 	public JobAdAggregator() {
 	}
 	
-	public Map<String, List<JobAdBean>> getJobAds() {
+	public AdvertisedJobAdsMap getJobAds() {
 		Advertiser advertiser;
 		String htmlContent;
 		ContentParser contentParser = null;
 		List<JobAdBean> ads = null;
 		List<Advertiser> advertisers = predefinedAdvertisers;
 		Map<String, List<JobAdBean>> advAds = new HashMap<>();
+		AdvertisedJobAdsMap advJobAds = null;
 		
 		Iterator<Advertiser> it = advertisers.iterator();
 		try {
@@ -69,7 +71,9 @@ public class JobAdAggregator {
 			System.err.println("Unable to parse content : " + e.getLocalizedMessage());
 		}
 		
-		return advAds;
+		advJobAds = new AdvertisedJobAdsMap(advAds);
+		
+		return advJobAds;
 		// return JobAdAggregatorBean.predefinedJobAds;		
 		
 	}
