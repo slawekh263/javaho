@@ -2,9 +2,6 @@
     <wb-module deploy-name="jobad-app-1.0-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="jobad-core-1.0-SNAPSHOT.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/j45/jobad-core/1.0-SNAPSHOT/jobad-core-1.0-SNAPSHOT.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="jobad-web-1.0-SNAPSHOT.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/j45/jobad-web/1.0-SNAPSHOT/jobad-web-1.0-SNAPSHOT.war">
             <dependency-type>uses</dependency-type>
         </dependent-module>

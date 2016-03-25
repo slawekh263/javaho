@@ -1,8 +1,12 @@
 
+
+- complete RS flow - add ws client (exchangeable with ejb client)
+- deploy on tomcat
+
 - debug from studio
 - use Spring instead of EJB
 - lazy loading
 - asynchronous http client
 - add search
 - loggers
-- unit tests
+- unit tests 	
