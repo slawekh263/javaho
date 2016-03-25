@@ -2,7 +2,10 @@ package org.j45.nursery;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.function.Predicate;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,16 +16,26 @@ public class Predicates {
         Predicates.UnitTest ut1 = new Predicates.UnitTest(1, "Basic scenario", new String[]{"test_PositiveSearch_RT_trip", "test_PositiveScenario_Open_Jaw"});
         Predicates.UnitTest ut2 = new Predicates.UnitTest(2, "Failure scenario", new String[]{});
         Predicates.UnitTest ut3 = new Predicates.UnitTest(3, "Custom scenario", new String[]{"test_OK", "test_NOK"});
+        Predicates.UnitTest ut4 = new Predicates.UnitTest(5, "Custom scenario", new String[]{"test_OK", "test_NOK"});
 
-        Predicates.UnitTest[] arr = {ut1, ut2, ut3};
+        Predicates.UnitTest[] arr = {ut1, ut2, ut3, ut4};
         List<Predicates.UnitTest> unitTests = Arrays.asList(arr);
 
         List<Predicates.UnitTest> emptyTests = getEmptyTests(unitTests, isEmptyTest());
         System.out.println("Empty tests size:  " + emptyTests.size());
         System.out.println("Empty tests: " + emptyTests.get(0));
+
+        OptionalDouble opt = unitTests.stream().mapToInt(getTestNumber()).average();
+        // System.out.println("sum of test IDs: " + sum);
+        System.out.println("opt: " + opt);
+
     }
 
     public static class UnitTest {
+        public Integer getId() {
+            return id;
+        }
+
         private Integer id;
         private String description;
         private String[] testMethods;
@@ -40,6 +53,10 @@ public class Predicates {
         public String toString() {
             return "Unit Test: " + id + ", description: " + description;
         }
+    }
+
+    public static ToIntFunction<UnitTest> getTestNumber() {
+        return t -> t.getId();
     }
 
     public static Predicate<UnitTest> isEmptyTest() {

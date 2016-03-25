@@ -5,22 +5,22 @@
     <option name="enableJSFormatting" value="true" />
     <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1457603804885" />
-    <option name="importOrderConfigFilePath" value="$PROJECT_DIR$/../../codeformat/eclipse/eb2.importorder" />
+    <option name="importOrderConfigFilePath" value="$PROJECT_DIR$/../codeformat/eclipse/eb2.importorder" />
     <option name="importOrderFromFile" value="true" />
     <option name="name" value="default" />
-    <option name="pathToConfigFileJS" value="$PROJECT_DIR$/../../codeformat/eclipse/eb2.js.code.format.xml" />
-    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../codeformat/eclipse/eb2.java.code.format.xml" />
+    <option name="pathToConfigFileJS" value="$PROJECT_DIR$/../codeformat/eclipse/eb2.js.code.format.xml" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../codeformat/eclipse/eb2.java.code.format.xml" />
     <option name="selectedJavaProfile" value="EB2" />
     <option name="selectedJavaScriptProfile" value="EB2" />
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -34,6 +34,6 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/classes" />
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
